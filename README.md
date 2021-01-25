@@ -1,5 +1,5 @@
 # stimulus-minimal
-pure javascript implementation of stimulus-like coding approach
+pure javascript implementation of stimulus-like coding paradigm
 
 ## Stimulus: is it worth the 45kB?
 

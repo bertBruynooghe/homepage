@@ -1,13 +1,12 @@
 <body>
-  <!-- controller with connect functionality -->
-  <div><script src="./test.mjs" type="module" onLoad="StartMessage(this)"></script>
-    <div data-target="theTarget">target</div> 
-    <button onClick="StartMessage.clickHandler(event)"> delete the target </button>
-  </div>
-  
-  <!-- controller without connect functionality -->
-  <div id="test">
-    <div data-target="theTarget">target</div> 
-    <button onClick="StartMessage(test).clickHandler(event)"> delete the target </button>
+  <div id="test1">
+    <script src="./controllers/StartMessage.mjs" type="module" onLoad="ctrl(this)"></script>
+    <div data-target="theTarget: test1">target</div> 
+    <button onClick="test1.handleClick(event)"> delete the target </button>
+    <div id="test2">
+      <script src="./controllers/StartMessage.mjs" type="module" onLoad="ctrl(this)"></script>
+      <div data-target="theTarget: test2">target</div> 
+      <button onClick="test2.handleClick(event)"> delete the target </button>
+    </div>
   </div>
 </body>
