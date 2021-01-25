@@ -22,3 +22,4 @@ window.ctrl = el =>
     // TODO: prevent naming clashes
     Object.assign(el.parentElement, { controllerName: el.src, ...controllerMethods })
   })
+  
