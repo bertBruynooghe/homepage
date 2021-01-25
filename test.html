@@ -1,0 +1,13 @@
+<body>
+  <!-- controller with connect functionality -->
+  <div><script src="./test.mjs" type="module" onLoad="startMessage()"></script>
+    <div data-target="theTarget">target</div> 
+    <button onClick="startMessage.clickHandler()"> delete the target </button>
+  </div>
+  
+  <!-- controller without connect functionality -->
+  <div id="test">
+    <div data-target="theTarget">target</div> 
+    <button onClick="startMessage(test).clickHandler()"> delete the target </button>
+  </div>
+</body>
