@@ -14,12 +14,8 @@ const getTargetsObject = el => {
 window.ctrl = el =>
   import(el.src).then(({ createController: create }) => {
     const controller = create(el.parentElement)
-    const controllerMethods = 
-      Object.entries(controller).reduce((acc, [name, method]) => ({
-        ...acc,
-        [name]: (...args) => method(getTargetsObject(el.parentElement),...args)
-      }), {})
-    // TODO: prevent naming clashes
-    Object.assign(el.parentElement, { controllerName: el.src, ...controllerMethods })
+    for (const name in controller) {
+      if (el.parentElement[name]) throw new Error(`${name} already exists on the root element of the controller. Please rename your controller method.`)
+      el.parentElement[name] = (...args) => controller[name](getTargetsObject(el.parentElement),...args)
+    }
   })
-  
