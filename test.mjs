@@ -5,12 +5,12 @@ const findRootElement = el => {
   return findRootElement(el.parentElement)
 }
 
-window.StartMessageController = rootElement => { 
-  startMessageRoots.push(rootElement || event.target.parentElement)
+window.StartMessageController = arg => { 
+  startMessageRoots.push(arg instanceof HTMLElement ? arg : arg.target.parentElement)
   alert('connect')
 
-  const clickHandler = () => {
-    const myRoot = findRootElement(event.target)
+  const clickHandler = e => {
+    const myRoot = findRootElement(e.target)
     // TODO: ignore the targets of nested controllers
     // can probably partly be mitigated by looking for [data-target="theTarget: StartMessageController"],
     // but that doesn't solve nesting of same things
