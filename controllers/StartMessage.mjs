@@ -4,6 +4,6 @@ export const createController = rootElement => {
   console.log('connected')
 
   return {
-    handleClick: () => rootElement.theTarget.remove()
+    handleClick: ({ theTarget }) => theTarget.remove()
   }
 }
