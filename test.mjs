@@ -6,7 +6,7 @@ const findRootElement = el => {
 }
 
 window.StartMessageController = arg => { 
-  startMessageRoots.push(arg instanceof HTMLElement ? arg : arg.target.parentElement)
+  startMessageRoots.push(arg instanceof HTMLScriptElement ? arg.parentElement: arg)
   alert('connect')
 
   const clickHandler = e => {
