@@ -1,14 +1,8 @@
-// TODO: how to cleanup objects
-
 const getTargetsObject = el => {
-  const targetElements = [...el.querySelectorAll(`[data-target$=": ${el.id}"]`)]
-  return targetElements.reduce((acc, targetElement) => {
-    const targetExpression = targetElement.getAttribute('data-target')
-    const [targetName] = targetExpression.split(':')
-    return { 
-    ...acc,
-    [targetName]: targetElement
-  }}, {})
+  const result = {}
+  for (const targetElement of el.querySelectorAll(`[data-target$=": ${el.id}"]`))
+    result[targetElement.getAttribute('data-target').split(':')[0]] = targetElement
+  return result
 }
 
 window.ctrl = el =>
