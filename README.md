@@ -82,3 +82,44 @@ Differences to spot here:
     * `onClick="theClipboard.copy(event)"` and then `copy: ({ source }, event) => { event.preventDefault() ....` might make you or your js linter happy at least, but it's still using `window.event` inside the HTML...
     * `onClick="theClipboard.copy(); return false;"` while not having the `preventDefault` in the method implementation.
     * `onClick="return theClipboard.copy()"`, `copy: ({ source }) => { .... return false }`,
+
+### Designing For Resilience
+(after [this](https://stimulus.hotwire.dev/handbook/designing-for-resilience))
+
+```
+  <head>
+    <style>
+      .clipboard-button { display: none; }
+      .clipboard--supported .clipboard-button { display: initial; }
+   </style>
+  </head>
+
+  <body>
+    <div id="theClipboard">
+      <script
+      src="./controllers/clipboardEnhanced.mjs"
+      type="module" 
+      onLoad="ctrl(this)"></script>
+      PIN: <input data-target="source: theClipboard" type="text" value="3737" readonly>
+      <a href="#" onClick="return theClipboard.copy()"  class="clipboard-button">Copy to Clipboard</a>
+    </div>
+  </body>
+```
+
+```
+import '../control.mjs'
+
+export const createController = root => { 
+  if (document.queryCommandSupported('copy')) {
+    root.classList.add("clipboard--supported")
+  }
+
+  return {
+    copy: ({ source }) => {
+      window.event.preventDefault()
+      source.select()
+      document.execCommand("copy")
+    } 
+  }
+}
+```
