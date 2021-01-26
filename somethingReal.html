@@ -1,0 +1,8 @@
+<div id="theClipboard">
+  <script
+    src="./controllers/clipboard.mjs"
+    type="module" 
+    onLoad="ctrl(this)"></script>
+  PIN: <input data-target="source: theClipboard" type="text" value="3737" readonly>
+  <a href="#" onClick="return theClipboard.copy()">Copy to Clipboard</a>
+</div>

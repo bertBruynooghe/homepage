@@ -47,3 +47,38 @@ Some differences to spot here:
   with nested controllers. (Mmm, maybe I'll revisit that one later, though, since it allows cross-linking between components, and that feels nasty.)
 * no freakin' classes for the controllers, just plain simple closures. `control.mjs` is   
   imported here for 'registering' the controller... (more on this file further on)
+
+### Building something real
+(after [this](https://stimulus.hotwire.dev/handbook/building-something-real))
+
+```
+<div id="theClipboard">
+  <script
+    src="./controllers/clipboard.mjs"
+    type="module" 
+    onLoad="ctrl(this)"></script>
+  PIN: <input data-target="source: theClipboard" type="text" value="3737" readonly>
+  <a href="#" onClick="theClipboard.copy()">Copy to Clipboard</a>
+</div>
+```
+
+```
+import '../control.mjs'
+
+export const createController = () => ({
+  copy: ({ source }) => {
+    window.event.preventDefault()
+    source.select()
+    document.execCommand('copy')
+  }
+})
+```
+
+Differences to spot here:
+* the `data-target` needs the _instance_ id of the controller (as opposed to the controller name in Stimulus). (Again, I might revisit this later as remarked above, but then I'll have to think about custom events on controllers to allow bubbling up events from child to parent components)
+* the implementation of the `copy` method depends on
+  [window.event](https://developer.mozilla.org/en-US/docs/Web/API/Window/event), which your linter, IDE or esthetics might frown upon. (I do think it's justified to use it here as it makes the DSL palatable, but I wouldn't even think of using it elsewhere.)
+  There are some alternatives though: 
+    * `onClick="theClipboard.copy(event)"` and then `copy: ({ source }, event) => { event.preventDefault() ....` might make you or your js linter happy at least, but it's still using `window.event` inside the HTML...
+    * `onClick="theClipboard.copy(); return false;"` while not having the `preventDefault` in the method implementation.
+    * `onClick="return theClipboard.copy()"`, `copy: ({ source }) => { .... return false }`,

@@ -10,6 +10,10 @@ window.ctrl = el =>
     const controller = create(el.parentElement)
     for (const name in controller) {
       if (el.parentElement[name]) throw new Error(`${name} already exists on the root element of the controller. Please rename your controller method.`)
-      el.parentElement[name] = (...args) => controller[name](getTargetsObject(el.parentElement),...args)
+      el.parentElement[name] = (...args) => {
+        const result = controller[name](getTargetsObject(el.parentElement),...args)
+        console.log({ result })
+        return result
+      }
     }
   })
