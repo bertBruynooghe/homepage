@@ -1,9 +1,16 @@
-<div id="test">
-  <script
-    src="./controllers/hello.mjs"
-    type="module" 
-    onLoad="ctrl(this)"></script>
+<html>
+  <head>
+    <script type="module">
+      window.controllers = {};
 
-  <input data-target="name: test" type="text">
-  <button onClick="test.greet()">Greet</button>
-</div>
+      (async() => {
+        document.body.innerHTML =
+          await (await fetch('./html-samples/hello.html')).text()
+        await import('./controllers/hello.mjs')
+        await import('./controllersLoaderWithEvents.mjs')
+      })()
+    </script>
+  </head>
+   <body>
+   </body>
+</html>

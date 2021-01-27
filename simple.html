@@ -4,12 +4,13 @@
       window.controllers = {};
 
       (async() => {
+        document.body.innerHTML =
+          await (await fetch('./html-samples/simple.html')).text()
         await import('./controllers/simple.mjs')
         await import('./controllersLoader.mjs')
       })()
     </script>
   </head>
    <body>
-     <div data-controller="simple"></div>
    </body>
 </html>

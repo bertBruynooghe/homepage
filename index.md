@@ -12,8 +12,7 @@ So here's my take on implementing [Stimulus](https://stimulus.hotwire.dev/handbo
 
 To start, we're going simply add the `data-controller` tag to an element of the HTML:
 
-```
-  <div data-controller='simple'></div>
+```html loadFrom: ./html-samples/hello.html
 ```
 
 and in the script part we'll initialize the controllers const
@@ -31,9 +30,27 @@ and finally our controllers loader:
 
 <p>
   Which results in: <br />
-  <iframe
-    width="300"
-    height="50"
-    src="./simple.html">
-  </iframe>
+  <iframe width="300" height="50" src="./simple.html"></iframe>
 </p>
+
+### Time for some action
+
+```html loadFrom: ./html-samples/hello.html
+```
+
+a new controller:
+```js loadFrom: ./controllers/hello.mjs
+```
+
+and an extended controllers loader:
+```js loadFrom: ./controllersLoaderWithEvents.mjs
+```
+
+<p>
+  Which results in: <br />
+  <iframe width="300" height="50" src="./hello.html"></iframe>
+</p>
+
+Remark that the syntax for handling events is quite different than Stimulus; 
+I didn't want complex parsing, and fancy native inline event handlers.
+(I know it's considered bad practice, due to separation of concerns, but the DSL than Stimulus is proposing is no way better in separation of concerns.)

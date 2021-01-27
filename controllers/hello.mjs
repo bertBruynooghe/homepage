@@ -1,5 +1,6 @@
-import '../control.mjs'
-
-export const createController = () => ({
-  greet: ({ name }) => console.log(`Hello, ${name.value}!`)
+controllers.hello = root => ({
+  greet: event => {
+    root.innerHTML  =`Hello`
+    console.log(event)
+  }
 })
