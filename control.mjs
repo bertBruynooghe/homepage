@@ -1,5 +1,6 @@
 const getTargetsObject = el => {
   const result = {}
+  // document.querySelectorAll(':not([data-controller] *)[data-target]')
   for (const targetElement of el.querySelectorAll(`[data-target$=": ${el.id}"]`)){
     const key = targetElement.getAttribute('data-target').split(':')[0]
     result[key] = result[key] ? [...[].concat(result[key]), targetElement] : targetElement

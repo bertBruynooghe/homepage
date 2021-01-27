@@ -1,3 +1,1 @@
-controllers.simple = async root => {
-  root.innerHTML = 'hello'
-}
+controllers.simple = root => root.innerHTML = 'hello'

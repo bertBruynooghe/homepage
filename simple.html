@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <script type="module">
+      window.controllers = {};
+
+      (async() => {
+        await import('./controllers/simple.mjs')
+        await import('./controllersLoader.mjs')
+      })()
+    </script>
+  </head>
+   <body>
+     <div data-controller="simple"></div>
+   </body>
+</html>
