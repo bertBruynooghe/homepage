@@ -1,7 +1,9 @@
 const getTargetsObject = el => {
   const result = {}
-  for (const targetElement of el.querySelectorAll(`[data-target$=": ${el.id}"]`))
-    result[targetElement.getAttribute('data-target').split(':')[0]] = targetElement
+  for (const targetElement of el.querySelectorAll(`[data-target$=": ${el.id}"]`)){
+    const key = targetElement.getAttribute('data-target').split(':')[0]
+    result[key] = result[key] ? [...[].concat(result[key]), targetElement] : targetElement
+  }
   return result
 }
 
