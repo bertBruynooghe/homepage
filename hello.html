@@ -5,7 +5,7 @@
 
       (async() => {
         document.body.innerHTML =
-          await (await fetch('./html-samples/hello.html')).text()
+          await (await fetch('./html-snippets/hello.html')).text()
         await import('./controllers/hello.mjs')
         await import('./controllersLoaderWithEvents.mjs')
       })()

@@ -12,7 +12,7 @@ So here's my take on implementing [Stimulus](https://stimulus.hotwire.dev/handbo
 
 To start, we're going simply add the `data-controller` tag to an element of the HTML:
 
-```html loadFrom: ./html-samples/hello.html
+```html loadFrom: ./html-snippets/hello.html
 ```
 
 and in the script part we'll initialize the controllers const
@@ -35,7 +35,7 @@ and finally our controllers loader:
 
 ### Time for some action
 
-```html loadFrom: ./html-samples/hello.html
+```html loadFrom: ./html-snippets/hello.html
 ```
 
 a new controller:
