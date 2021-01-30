@@ -54,3 +54,6 @@ and an extended controllers loader:
 Remark that the syntax for handling events is quite different than Stimulus; 
 I didn't want complex parsing, and fancy native inline event handlers.
 (I know it's considered bad practice, due to separation of concerns, but the DSL than Stimulus is proposing is no way better in separation of concerns.)
+
+Also, feel free to change the function name `handleBy` in whatever your feel fits your taste best.
+(It'd better be good, since it's a part of the root variables of the page.)
