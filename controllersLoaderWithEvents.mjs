@@ -1,13 +1,10 @@
-const wrapWithEvent = func => (...args) => func(window.event, ...args)
-const wrapController = controller => Object.entries(controller)
-  .reduce((acc, [k, func]) => ({ ...acc, [k]: wrapWithEvent(func) }), {})
-
 for (const el of document.querySelectorAll('[data-controller]')){
   const controllerName = el.getAttribute('data-controller')
-  const controller = controllers[controllerName](el)
-  el.controller = wrapController(controller)
+  el.controller = controllers[controllerName](el)
 }
 
 const getRoot = 
   el => el.getAttribute('data-controller') ? el : getRoot(el.parentElement)
-window.ctrl = el => getRoot(el).controller
+window.ctrl = 
+  ([methodName]) => getRoot(window.event.currentTarget)
+    .controller[methodName](window.event)
