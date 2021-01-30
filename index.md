@@ -51,9 +51,11 @@ and an extended controllers loader:
   <iframe width="300" height="50" src="./samples/hello/index.html"></iframe>
 </p>
 
-Remark that the syntax for handling events is quite different than Stimulus; 
-I didn't want complex parsing, and fancy native inline event handlers.
-(I know it's considered bad practice, due to separation of concerns, but the DSL than Stimulus is proposing is no way better in separation of concerns.)
-
-Also, feel free to change the function name `handleBy` in whatever your feel fits your taste best.
+Several things to mention here:
+* the syntax for handling events is quite different compared to Stimulus: 
+I didn't want complex parsing, and I fancy native inline event handlers.
+(I know it's considered bad practice due to separation of concerns, but the DSL that Stimulus is proposing is no way better in that area.)
+* feel free to change the function name `handleBy` in whatever your feel fits your taste best.
 (It'd better be good, since it's a part of the root variables of the page.)
+* contrary to Stimulus, the name of the controller isn't passed along in the HMTL.
+  Actions are strictly scoped to the closest data-controller ancestor. (Also see the part on targets and nested elements for more explanation.)
