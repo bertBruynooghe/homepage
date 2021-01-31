@@ -59,3 +59,16 @@ I didn't want complex parsing, and I fancy native inline event handlers.
 (It'd better be good, since it's a part of the root variables of the page.)
 * contrary to Stimulus, the name of the controller isn't passed along in the HMTL.
   Actions are strictly scoped to the closest data-controller ancestor. (Also see the part on targets and nested elements for more explanation.)
+
+### Everybody needs some target
+
+```html loadFrom: ./samples/targetedHello/snippet.html
+```
+
+a new controller:
+```js loadFrom: ./samples/targetedHello/controller.mjs
+```
+
+and an extended controllers loader:
+```js loadFrom: ./controllersLoaderWithTargetedEvents.mjs
+```
