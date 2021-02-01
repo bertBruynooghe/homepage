@@ -1,6 +1,6 @@
 ## Portfolio
 
-### Projects maintained by me
+### Repositories
 
 #### [Low carb assistent](https://github.com/bertBruynooghe/lo_carb_assistent)
 
@@ -15,10 +15,19 @@ A cost calculator for hiring cars from one of the car sharing providers active i
 
 Syntactic sugar on top of [VuexORM](https://github.com/vuex-orm/vuex-orm) as proff of concept of a more fluid way (syntactic sugar) to interact with the framework (based on Rails' ActiveRecord syntax, and take advantage of ES6.)  
 
+#### [FreeStyle Libre gem](https://github.com/bertBruynooghe/freestyle_libre)
+
+A ruby gem for reading out values from USB from the FreeStyle Libre glucose sensor.
+
+#### [Wicket verifiable](https://github.com/bertBruynooghe/wicket-verifiable)
+
+An extension for the wicket
+
 ### Coding katas
 
 * StimulusP
-* [Medtronic pump settings](https://jsfiddle.net/bertBruynooghe/8karfy5L/): pure HTML/JavaScript code to calculate a set of insuline pump settings based on a given one, a given ratio and custom roundings as implementated in the pump itself. 
+* [Medtronic pump settings](https://jsfiddle.net/bertBruynooghe/8karfy5L/): pure HTML/JavaScript code to calculate a set of insuline pump settings based on a given one, a given ratio and custom roundings as implementated in the pump itself.
+* [Rails nested_attributes GUI without javascript](https://github.com/bertBruynooghe/nested_attributes)
 
 ### Presentations
 
