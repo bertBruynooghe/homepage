@@ -13,11 +13,12 @@ A cost calculator for hiring cars from one of the car sharing providers active i
 
 #### [VuexORM Sugar](https://gitlab.com/BertBruynooghe/vuex-orm-sugar)
 
-Syntactic sugar on top of [VuexORM](https://github.com/vuex-orm/vuex-orm) as POC of a more fluid way (syntactic sugar) to interact with the framework (based on Rails' ActiveRecord syntax, and take advantage of ES6.)  
+Syntactic sugar on top of [VuexORM](https://github.com/vuex-orm/vuex-orm) as proff of concept of a more fluid way (syntactic sugar) to interact with the framework (based on Rails' ActiveRecord syntax, and take advantage of ES6.)  
 
 ### Coding katas
 
-* 
+* StimulusP
+* [Medtronic pump settings](https://jsfiddle.net/bertBruynooghe/8karfy5L/): pure HTML/JavaScript code to calculate a set of insuline pump settings based on a given one, a given ratio and custom roundings as implementated in the pump itself. 
 
 ### Presentations
 
