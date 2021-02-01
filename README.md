@@ -1,2 +1,2 @@
 * [Portfolio](./portfolio)
-* [StimulusP](./StimulusP)
+* [StimulusP](./stimulusP)
