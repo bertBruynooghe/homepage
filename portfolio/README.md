@@ -21,7 +21,7 @@ Conceived as n=1 project and deployed on Heroku, and used almost daily.
 
 A Ruby gem for reading out values from USB from the FreeStyle Libre glucose sensor.
 
-### [Medtronic pump settings](https://jsfiddle.net/bertBruynooghe/8karfy5L/)
+#### [Medtronic pump settings](https://jsfiddle.net/bertBruynooghe/8karfy5L/)
 
 Pure HTML/JavaScript code to calculate a set of insuline pump settings based on a given one, a given ratio and custom roundings as implemented in the pump itself.
 (Also an experiment in one line functions.)
