@@ -8,4 +8,4 @@ My take on a programming paradigm based on [Stimulus](https://stimulus.hotwire.d
 
 Unlike some parts of Stimulus, it should feel like a javascript thing rather than a helper for Rails.
 
-More explanation to be found [here](./StimulusP) in a page that has been build with the same technologies.
+More explanation to be found [here](//bert.bruynooghe-polet.com/stimulusP) in a page that has been build with the same technologies.
