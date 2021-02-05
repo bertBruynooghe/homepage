@@ -2,7 +2,7 @@ This page contains a selection of my open source contributions on various platfo
 
 #### [Stimulus P](//bert.bruynooghe-poelt.com/stimulusP)
 
-A coding kata featuring a documentation page exploring a simpler javascript implementation of Basecamp's [Stimulus](https://stimulus.hotwire.dev) concept. (Still in progress) 
+A coding kata featuring a documentation page exploring a simpler javascript implementation of Basecamp's [Stimulus](https://stimulus.hotwire.dev) concept.
 
 #### [Gentse deelautos rekenmodule](https://github.com/GentseDeelautos/rekenmodule) (WIP)
 
