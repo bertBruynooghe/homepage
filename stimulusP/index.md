@@ -72,3 +72,16 @@ a new controller:
 and an extended controllers loader:
 ```js loadFrom: ./controllersLoaderWithTargetedEvents.mjs
 ```
+
+### ...and lists
+
+```html loadFrom: ./samples/targetList/snippet.html
+```
+
+a new controller:
+```js loadFrom: ./samples/targetList/controller.mjs
+```
+
+and an extended controllers loader:
+```js loadFrom: ./controllersLoaderWithTargetListEvents.mjs
+```
