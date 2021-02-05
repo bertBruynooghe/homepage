@@ -73,6 +73,11 @@ and an extended controllers loader:
 ```js loadFrom: ./controllersLoaderWithTargetedEvents.mjs
 ```
 
+<p>
+  Which results in: <br />
+  <iframe width="300" height="50" src="./samples/targetedHello/index.html"></iframe>
+</p>
+
 ### ...and lists
 
 ```html loadFrom: ./samples/targetList/snippet.html
@@ -85,3 +90,8 @@ a new controller:
 and an extended controllers loader:
 ```js loadFrom: ./controllersLoaderWithTargetListEvents.mjs
 ```
+
+<p>
+  Which results in: <br />
+  <iframe width="300" height="100" src="./samples/targetList/index.html"></iframe>
+</p>
