@@ -95,3 +95,25 @@ and an extended controllers loader:
   Which results in: <br />
   <iframe width="300" height="100" src="./samples/targetList/index.html"></iframe>
 </p>
+
+### Nested 'components'
+
+Here is where the idea of using inline event listeners breaks down.
+The most elegant solution would be to use raise custom events in the child, and
+'bind' the custom event in an inline handler to the parent controller. 
+Unfortunately, inline handling doesn't seem to work for custom events... 
+(Please point me to a resource that explains this if you can!) 
+
+The best I could come up with is next code, but this hardwires the components,
+while the whole idea was to do the wiring in the html.
+
+```html loadFrom: ./samples/targetList/snippet.html
+```
+
+the controllers:
+```js loadFrom: ./samples/targetList/controllers.mjs
+```
+
+and use the same controllers loader as the previous one.
+
+So I guess I'll have to create another iteration...
