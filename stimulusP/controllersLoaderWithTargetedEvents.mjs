@@ -3,7 +3,8 @@ const targetAtt = 'data-target'
 const targetSelector = `[${targetAtt}], :not([${ctrlAtt}] *)[${targetAtt}]`
 
 const ctrlName = el => el.getAttribute(ctrlAtt)
-const getRoot = el => ctrlName(el) ? el : getRoot(el.parentElement)
+const getRoot =
+  ({ parentElement: el }) => ctrlName(el) ? el : getRoot(el.parentElement)
 
 const targetElementReducer = (acc, el) => 
   ({ ...acc, [el.getAttribute(targetAtt)] : el })
