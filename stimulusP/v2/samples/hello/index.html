@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <script type="module">
+      window.controllers = {};
+
+      (async() => {
+        document.body.innerHTML =
+          await (await fetch('./snippet.html')).text()
+        await import('./controller.mjs')
+        await import('../../controllersLoaderWithEvents.mjs?5')
+      })()
+    </script>
+  </head>
+   <body>
+   </body>
+</html>

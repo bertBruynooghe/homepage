@@ -1,0 +1,1 @@
+controllers.simple = root => root.innerHTML = 'hello'
