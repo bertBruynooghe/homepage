@@ -6,7 +6,8 @@ Don’t get me wrong: I do like the idea of Stimulus, but I’m not sure if it�
 
 Also, the class inheritance API seems so 2018… What if we keep the good 'convention over configuration' of Rails (Stimulus’ stepdad) and try to come up with a minimal implementation the feels more natural to HTML/JavaScript developers?
 
-So here's my take on implementing [Stimulus](https://stimulus.hotwire.dev/handbook/introduction), only using browser technology (but nothing prevents you from using it in the build system of your choice).
+So here's my second take on implementing [Stimulus](https://stimulus.hotwire.dev/handbook/introduction), only using browser technology (but nothing prevents you from using it in the build system of your choice). (If you're interested: see  to see
+my approach there, and why it failed.)
 
 ### Let's get started
 
@@ -53,10 +54,10 @@ and an extended controllers loader:
 
 Several things to mention here:
 * the syntax for handling events is quite different compared to Stimulus: 
-I didn't want complex parsing, and I fancy native inline event handlers.
-(I know it's considered bad practice due to separation of concerns, but the DSL that Stimulus is proposing is no way better in that area.)
-* feel free to change the function name `handleBy` in whatever your feel fits your taste best.
-(It'd better be good, since it's a part of the root variables of the page.)
+I didn't want complex parsing, so I depend on `Function` to get it working.  
+(I do fancy native inline event handlers, but they're not supporting the custom
+events we'll need later. I'm deliberately breaking the convention not to use
+`Function`; if you insist, you can write you own version using JSON in `data-action` instead and parse it using `JSON.stringify`, but I found that too ugly.)
 * contrary to Stimulus, the name of the controller isn't passed along in the HMTL.
   Actions are strictly scoped to the closest data-controller ancestor. (Also see the part on targets and nested elements for more explanation.)
 
@@ -98,22 +99,23 @@ and an extended controllers loader:
 
 ### Nested 'components'
 
-Here is where the idea of using inline event listeners breaks down.
-The most elegant solution would be to use raise custom events in the child, and
-'bind' the custom event in an inline handler to the parent controller. 
-Unfortunately, inline handling doesn't seem to work for custom events... 
-(Please point me to a resource that explains this if you can!) 
+This is the area where Stimulus falls short/is fuzzy: what if you have two nested instances of the same controller? To solve this problem, I scoped the targets and
+actions of the controller to the non-overlapping zones. So if you want to propagate
+an action from the inner controller to the outer, you have to dispatch a custom event
+in the child, and add an action to it in the parent. That away, it resembles the
+strict closed nature of most component frameworks, and it also allows to create
+clean isolated components using template engines. (I know this digresses from
+the goal of Stimulus: 'the JavaScript framework for the HTML you already have',
+but it is something I need often.)
 
-The best I could come up with is next code, but this hardwires the components,
-while the whole idea was to do the wiring in the html.
-
-```html loadFrom: ./samples/nested/snippet.html
+```html loadFrom: ./samples/targetList/snippet.html
 ```
 
 the controllers:
-```js loadFrom: ./samples/nested/controllers.mjs
+```js loadFrom: ./samples/targetList/controller.mjs
 ```
 
-and use the same controllers loader as the previous one.
+### Lifecycle management
 
-So I guess I'll have to create another iteration...
+Except from the `connect` behavior of Stimulus, I didn't implement any lifecycle management yet since I didn't need it yet. Also, the code as it is now only works on the initial loaded HTML, not on items that have been added dynamically.
+I plan to add that later...
