@@ -17,7 +17,9 @@ const eventHandlers = (root, actionable) => {
   return (Function(expr))(controller(root, targets(root)))
 }
 
-for (const root of document.querySelectorAll(`[${ctrlAtt}]`))
+for (const root of document.querySelectorAll(`[${ctrlAtt}]`)){
+  controllers[ctrlName(root)](root, targets(root))
   for (const actionable of root.querySelectorAll(actionSelector))
     for (const [k,v] of Object.entries(eventHandlers(root, actionable)))
       actionable.addEventListener(k, e => v(e, targets(root)))
+}

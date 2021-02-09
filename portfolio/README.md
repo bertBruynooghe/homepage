@@ -1,6 +1,6 @@
 This page contains a selection of my open source contributions on various platforms: 
 
-#### [Stimulus P](//bert.bruynooghe-poelt.com/stimulusP)
+#### [Stimulus P](https://bert.bruynooghe-polet.com/stimulusP/index.html)
 
 A coding kata featuring a documentation page exploring a simpler javascript implementation of Basecamp's [Stimulus](https://stimulus.hotwire.dev) concept.
 

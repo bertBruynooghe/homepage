@@ -111,7 +111,7 @@ while the whole idea was to do the wiring in the html.
 ```
 
 the controllers:
-```js loadFrom: ./samples/targetList/controllers.mjs
+```js loadFrom: ./samples/targetList/controller.mjs
 ```
 
 and use the same controllers loader as the previous one.

@@ -6,8 +6,7 @@ Don’t get me wrong: I do like the idea of Stimulus, but I’m not sure if it�
 
 Also, the class inheritance API seems so 2018… What if we keep the good 'convention over configuration' of Rails (Stimulus’ stepdad) and try to come up with a minimal implementation the feels more natural to HTML/JavaScript developers?
 
-So here's my second take on implementing [Stimulus](https://stimulus.hotwire.dev/handbook/introduction), only using browser technology (but nothing prevents you from using it in the build system of your choice). (If you're interested: see  to see
-my approach there, and why it failed.)
+So here's my second take on implementing [Stimulus](https://stimulus.hotwire.dev/handbook/introduction), only using browser technology (but nothing prevents you from using it in the build system of your choice). (If you're interested: here's my [previous attempt](../v1/index.html) along with the description why it failed.)
 
 ### Let's get started
 
@@ -108,12 +107,17 @@ clean isolated components using template engines. (I know this digresses from
 the goal of Stimulus: 'the JavaScript framework for the HTML you already have',
 but it is something I need often.)
 
-```html loadFrom: ./samples/targetList/snippet.html
+```html loadFrom: ./samples/nested/snippet.html
 ```
 
 the controllers:
-```js loadFrom: ./samples/targetList/controller.mjs
+```js loadFrom: ./samples/nested/controllers.mjs
 ```
+
+<p>
+  Which results in: <br />
+  <iframe width="300" height="100" src="./samples/nested/index.html"></iframe>
+</p>
 
 ### Lifecycle management
 
