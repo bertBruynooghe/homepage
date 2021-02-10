@@ -111,7 +111,7 @@ but it is something I need often.)
 ```
 
 the controllers:
-```js loadFrom: ./samples/nested/controllers.mjs
+```js loadFrom: ./samples/nested/controller.mjs
 ```
 
 <p>

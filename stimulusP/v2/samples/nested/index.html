@@ -5,8 +5,8 @@
 
       (async() => {
         document.body.innerHTML =
-          await (await fetch('./snippet.html')).text()
-        await import('./controllers.mjs')
+          await (await fetch('./snippet.html?1')).text()
+        await import('./controller.mjs')
         await import('../../controllersLoaderWithTargetListEvents.mjs?2')
       })()
     </script>
