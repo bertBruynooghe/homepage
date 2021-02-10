@@ -53,10 +53,8 @@ and an extended controllers loader:
 
 Several things to mention here:
 * the syntax for handling events is quite different compared to Stimulus: 
-I didn't want complex parsing, so I depend on `Function` to get it working.  
-(I do fancy native inline event handlers, but they're not supporting the custom
-events we'll need later. I'm deliberately breaking the convention not to use
-`Function`; if you insist, you can write you own version using JSON in `data-action` instead and parse it using `JSON.stringify`, but I found that too ugly.)
+(I wanted to use native inline event handlers, but they're not supporting the custom
+events we'll need later.
 * contrary to Stimulus, the name of the controller isn't passed along in the HMTL.
   Actions are strictly scoped to the closest data-controller ancestor. (Also see the part on targets and nested elements for more explanation.)
 
