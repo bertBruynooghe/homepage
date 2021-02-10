@@ -11,16 +11,14 @@ const targetElementReducer = (targets, target) =>
 const targets = root => 		
   [...root.querySelectorAll(targetSelector)].reduce(targetElementReducer, {})
 
-const eventHandlers = (controller, actionable) => {
-  const handlerTuplesString = actionable.getAttribute(actionAtt)
-  const expr = `with(arguments[0]){ return { ${handlerTuplesString} } }`
-  return (Function(expr))(controller)
-}
+const tuplesStrings = actionable => actionable.getAttribute(actionAtt).split(',')
+const eventHandlerTuples = actionable =>
+  tuplesStrings(actionable).map(s => s.split(':').map(s => s.trim()))
 
 const parseController = (root, controller, targets) => {
   for (const actionable of root.querySelectorAll(actionSelector))
-    for (const [k,v] of Object.entries(eventHandlers(controller, actionable)))
-      actionable.addEventListener(k, e => v(e, targets))
+    for (const [k,v] of eventHandlerTuples(actionable))
+      actionable.addEventListener(k, e => controller[v](e, targets))
 }
 const initControllerWithTargets = (root, targets) =>
   parseController(root, controllers[ctrlName(root)](root, targets), targets)

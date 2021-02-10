@@ -7,7 +7,7 @@
         document.body.innerHTML =
           await (await fetch('./snippet.html')).text()
         await import('./controllers.mjs')
-        await import('../../controllersLoaderWithTargetListEvents.mjs')
+        await import('../../controllersLoaderWithTargetListEvents.mjs?2')
       })()
     </script>
   </head>
