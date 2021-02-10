@@ -1,0 +1,14 @@
+<html>
+  <head>
+  </head>
+  <script type="module">
+    (async () => {
+      const result = await fetch('./bookmarklet.js')
+      const text = await result.text()
+      code.innerHTML = `javascript: ${text.replaceAll('\n', ' ')}`
+    })()
+  </script>
+  <body>
+    <code><pre id="code"></pre></code>
+  </body>
+</html>
