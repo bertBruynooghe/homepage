@@ -1,5 +1,4 @@
 controllers.markdown = async root => {
-  console.log('test')
   const result = await fetch(root.getAttribute('data-url'))
   console.log(result)
   const text = await result.text()
