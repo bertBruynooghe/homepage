@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TODO: don't use the javascript interface of fontawesome here; it should work without it -->
+  <script src="https://kit.fontawesome.com/f4479c5ce4.js" crossorigin="anonymous"></script>
+  <script>
+    function readyMessage() { alert('Slaat de wijzigingen op en gaat terug naar de startpagina. (Lege evaluatiepagina of klaspagina.)') }
+    function nextMessage() { alert('Slaat de wijzigingen op en gaat naar de volgende leerling in de klas, of naar de eerste leerling van de volgende klas. (Uiteraard enkel als er maar 1 leerling geselecteerd is.)') }
+    function classPage() { alert('Opent het klasoverzicht.') }
+    function toActivationPage() { alert('Gaat naar het evaluatiescherm zonder gebruiker ingevuld') }
+    function toConfigurationPage() { alert('Gaat naar het instellingenscherm; tekst kan eventueel verdwijnen met styling.') }
+    function changeDay() { alert('Verandert de dag en toont laatste klas van de desbetreffende dag. Enkel zichtbaar als lesrooster ingegeven is. Visualisatie zal anders zijn met styling.') }
+    function otherClass() { alert('Verandert de klas. Nog niet zeker of dit de geselecteerde leerlingen moet behouden. Indien geen lesrooster dan staan hier alle klassen. (Deze overvloed aan links zal enkel getoond worden in zeer oude browsers en screenreaders, anders is dit weggestyled.)') }
+    function evaluationOnePupil() { alert('Opent de evaluatiepagina met de desbetreffende leerling ingevuld.') }
+    function evaluationMultiplePupils() { alert('Opent de evaluatiepagina met de geslecteeerde leerlingen ingevuld.') }
+    function blankEvaluation() { alert('Evaluatiepagina zoals je erop terecht komt als startpagina, vanuit "zoek persoon" uit de klaspagina, of na "klaar" op de evaluatiepagina. Focus moet hier onmiddelijk in de zoek-inputbox staan.') }
+    function singleEvaluation() { alert('Evaluatiepagina voor enkele leerling na selectie in klasoverzicht of na maneel eerste leerling toe te voegen.') }
+    function multipleEvaluation() { alert('Evaluatiepagina voor meerdere leerling na selectie in klasoverzicht of na maneel meerdere leerlingen toe te voegen.') }
+    function resetMessage() { alert('Maak selectie ongedaan. Enkel zichtbaar indien iets geslecteerd.') }
+    function evaluationAfterSearch() { alert('Evaluatiescherm nadat er een zoekopdracht gestart is. Nu kan een naam teogevoegd worden. In de gestylede versie met javascript valt deze stap weg, en wordt het toevoegen van een user met een typeahed gedaan.') }
+    function searchMessage () { alert`Start het zoeken en laat dan selectie zien om eventueel toe te voegen. Met styles en scripts wordt dit een typeahead.` }
+  </script>
+</head>
+
+<body>
+  <div>
+    <div>
+      <h1>Klasoverzicht</h1>
+      <a href="javascript: toActivationPage()">Zoek persoon</a>
+      <a href="javascript: toConfigurationPage()"><span>Instellingen</span><i class="fas fa-cog"></i></a>
+    </div>
+    <div>
+      <div>
+        <strong>donderdag</strong>
+        <!-- links should be generated -->
+        <a href="javascript: changeDay()">vrijdag</a>
+        <a href="javascript: changeDay()">maandag</a>
+        <a href="javascript: changeDay()">dinsdag</a>
+        <a href="javascript: changeDay()">woensdag</a>
+      </div>
+      <div>
+        <strong>6METa</strong>
+        <a href="javascript: otherClass()">4HOUT</a>
+        <a href="javascript: otherClass()"> 5ELEKb</a>
+      </div>
+      <form>
+        <div>
+          <input type="checkbox">
+          <a href="javascript: evaluationOnePupil()">Bert Bruynooghe</a>
+          <span>S<sup>+</sup> O D<sub>-</sub> A</span>
+        </div>
+        <div>
+          <input type="checkbox">
+          <a href="javascript: evaluationOnePupil()">
+            Koen Piers</a>
+          <span>S<sup>+</sup> O D<sub>-</sub> A</span>
+        </div>
+        <div>
+          <input type="checkbox">
+          <a href="javascript: evaluationOnePupil()">
+            Simon Mensaert</a>
+          <span>S<sup>+</sup> O D<sub>-</sub> A</span>
+        </div>
+        <div><input type="submit" value="Evalueer" onclick="evaluationMultiplePupils()"></div>
+      </form>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h1>Nieuwe evaluatie<a href="javascript: blankEvaluation()">(1)</a></h1>
+      <a href="javascript: classPage()">Klasoverzicht</a>
+      <a href="javascript: toConfigurationPage()"><span>Instellingen</span><i class="fas fa-cog"></i></a>
+    </div>
+    <form>
+      <input type="text" placeholder="stuk van naam of klas"><button onclick="searchMessage()">Zoek</button>
+    </form>
+  </div>
+  <div>
+    <div>
+      <h1>Nieuwe evaluatie <a href="javascript: singleEvaluation()">(2)</a></h1>
+      <a href="javascript: classPage()">Klasoverzicht</a>
+      <a href="javascript: toConfigurationPage()"><span>Instellingen</span><i class="fas fa-cog"></i></a>
+    </div>
+    <form>
+      <div>Bert Bruynooghe, 6METb<a href="">Verwijder</a></div>
+      <input type="text" placeholder="stuk van naam of klas"><button onclick="searchMessage()">Zoek</button>
+      <div>
+        <div>
+          <strong>Stiptheid: </strong>
+          <label>
+            <input type="radio">
+            foei&nbsp;<i class="far fa-thumbs-down"></i>
+          </label>
+          <label>
+            <input type="radio">
+            bravo&nbsp;<i class="far fa-thumbs-up"></i>
+          </label>
+          <a href="javascript: resetMessage()">&nbsp;reset</a>
+        </div>
+      </div>
+      <div>
+        <div>
+          <strong>Orde: </strong>
+          <label>
+            <input type="radio">
+            foei&nbsp;<i class="far fa-thumbs-down"></i>
+          </label>
+          <label>
+            <input type="radio">
+            bravo&nbsp;<i class="far fa-thumbs-up"></i>
+          </label>
+          <a href="javascript: resetMessage()">&nbsp;reset</a>
+        </div>
+      </div>
+      <div>
+        <div>
+          <strong>Discipline: </strong>
+          <label>
+            <input type="radio">
+            foei&nbsp;<i class="far fa-thumbs-down"></i>
+          </label>
+          <label>
+            <input type="radio">
+            bravo&nbsp;<i class="far fa-thumbs-up"></i>
+          </label>
+          <a href="javascript: resetMessage()">&nbsp;reset</a>
+        </div>
+      </div>
+      <div>
+        <div>
+          <strong>Atttitude: </strong>
+          <label>
+            <input type="radio">
+            foei&nbsp;<i class="far fa-thumbs-down"></i>
+          </label>
+          <label>
+            <input type="radio">
+            bravo&nbsp;<i class="far fa-thumbs-up"></i>
+          </label>
+          <a href="javascript: resetMessage()">&nbsp;reset</a>
+        </div>
+      </div>
+      <div>
+        <label>Commentaar</label>
+        <div><textarea></textarea></div>
+      </div>
+      <div>
+        <button onclick="readyMessage()">
+          Klaar<&nbsp;<i class="far fa-save"></i></i>
+        </button>
+        <button onclick="nextMessage()">Volgende&nbsp;
+          <i class="far fa-save"></i>
+        </button>
+      </div>
+
+    </form>
+  </div>
+  <div>
+    <div>
+      <h1>Nieuwe evaluatie <a href="javascript: evaluationAfterSearch()">(3)</a> </h1>
+      <a href="javascript: classPage()">Klasoverzicht</a>
+      <a href="javascript: toConfigurationPage()"><span>Instellingen</span><i class="fas fa-cog"></i></a>
+    </div>
+    <form>
+      <div>Bert Bruynooghe, 6METb<a href="">Verwijder</a></div>
+      <select>
+        <option disabled selected>Selecteer een naam</option>
+        <option>Koen Piers</option>
+      </select>
+      <button>Toevoegen</button>
+    </form>
+  </div>
+  <div>
+    <div>
+      <h1>Nieuwe evaluatie <a href="javascript: multipleEvaluation()">(4)</a></h1>
+      <a href="javascript: classPage()">Klasoverzicht</a>
+      <a href="javascript: toConfigurationPage()"><span>Instellingen</span><i class="fas fa-cog"></i></a>
+    </div>
+    <form>
+      <div>Bert Bruynooghe, 6METb<a href="">Verwijder</a></div>
+      <div>Koen Piers, 6METb<a href="">Verwijder</a></div>
+      <input type="text" placeholder="stuk van naam of klas"><button onclick="searchMessage()">Zoek</button>
+      <div>
+        <div>
+          <strong>Stiptheid: </strong>
+          <label>
+            <input type="radio">
+            foei&nbsp;<i class="far fa-thumbs-down"></i>
+          </label>
+          <label>
+            <input type="radio">
+            bravo&nbsp;<i class="far fa-thumbs-up"></i>
+          </label>
+          <a href="javascript: resetMessage()">&nbsp;reset</a>
+        </div>
+      </div>
+      <div>
+        <div>
+          <strong>Orde: </strong>
+          <label>
+            <input type="radio">
+            foei&nbsp;<i class="far fa-thumbs-down"></i>
+          </label>
+          <label>
+            <input type="radio">
+            bravo&nbsp;<i class="far fa-thumbs-up"></i>
+          </label>
+          <a href="javascript: resetMessage()">&nbsp;reset</a>
+        </div>
+      </div>
+      <div>
+        <div>
+          <strong>Discipline: </strong>
+          <label>
+            <input type="radio">
+            foei&nbsp;<i class="far fa-thumbs-down"></i>
+          </label>
+          <label>
+            <input type="radio">
+            bravo&nbsp;<i class="far fa-thumbs-up"></i>
+          </label>
+          <a href="javascript: resetMessage()">&nbsp;reset</a>
+        </div>
+      </div>
+      <div>
+        <div>
+          <strong>Atttitude: </strong>
+          <label>
+            <input type="radio">
+            foei&nbsp;<i class="far fa-thumbs-down"></i>
+          </label>
+          <label>
+            <input type="radio">
+            bravo&nbsp;<i class="far fa-thumbs-up"></i>
+          </label>
+          <a href="javascript: resetMessage()">&nbsp;reset</a>
+        </div>
+      </div>
+      <div>
+        <label>Commentaar</label>
+        <div><textarea></textarea></div>
+      </div>  
+      <div>
+        <button onclick="readyMessage()">
+          Klaar<&nbsp;<i class="far fa-save"></i></i>
+        </button>
+        <button onclick="nextMessage()">Volgende&nbsp;
+          <i class="far fa-save"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
