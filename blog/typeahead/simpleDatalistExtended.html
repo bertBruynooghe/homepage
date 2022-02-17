@@ -1,0 +1,25 @@
+<label for="nameTxt">Name</label>
+<input list="nameSuggestions" id="nameTxt" name="nameTxt"/>
+<button type="submit" name="suggestNames" id="searchNamesBtn">Search</button>
+<div id="suggestionsBox">
+  <datalist id="nameSuggestions"></datalist>
+</div>
+<template id="suggestionTemplate">
+  <label><input type="radio" name="suggestion"><span></span></label>
+</template>
+
+<script>
+  searchNamesBtn.remove(); 
+  nameTxt.addEventListener('input', ({ target: { value } }) => {
+    suggestionsBox.innerHTML = ''
+    if (!value) return
+    const option = suggestionTemplate.content.cloneNode(true)
+    option.firstElementChild.querySelector('span').textContent = `${value}${value}`
+    option.firstElementChild.querySelector('input').addEventListener('input', ({ target }) => {
+      nameTxt.value = `${value}${value}`
+      nameTxt.focus()
+      suggestionsBox.innerHTML=''
+    })
+    suggestionsBox.appendChild(option)
+  })
+</script>

@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script src="../../lib/3.1.6/ejs.min.js" referrerpolicy="no-referrer"></script>  </head>
+  <body>
+    <div id="output"></div>
+    <script>
+      const render = async formData => {
+        const response = await fetch('./formBasedAutofill.html.ejs')
+        const template = await response.text()
+
+        output.innerHTML = ejs.render(template, { formData })
+        output.querySelector('#form').addEventListener('submit', e => {
+          e.preventDefault()
+          controllerAction(render, new FormData(e.target))
+        })
+      }
+
+      const controllerAction = async (render, formData) => {
+        const textValue = formData.get('text')
+
+        if (formData.get('searchButton') != null) {
+          formData.delete('suggestions[]')
+          for (let i = 0 ; i < 5; i++) formData.append('suggestions[]', `${textValue}_${i}`)
+        }
+
+        const suggestion = formData.get('suggestion')
+        if (suggestion) formData.set('text', suggestion)
+
+        render(formData)
+      }
+
+      render(new FormData())
+    </script>
+  </body>
+</html>

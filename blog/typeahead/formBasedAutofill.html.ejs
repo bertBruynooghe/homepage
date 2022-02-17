@@ -1,0 +1,14 @@
+<form id="form" method="post">
+  <% if (formData.get('finalSubmit') != null) { %>
+    text = <%= formData.get('text')%> submittted
+  <% } else { %>
+    <input type="text" name="text" id="text" value="<%= formData.get('text') %>">
+    <button type="submit" name="searchButton">Search</button>
+    <div id="container">
+      <% for (let [k, v] of formData.entries()) { if (k.startsWith('suggestions[')) { %>
+        <button type="submit" name="suggestion" value="<%= v %>"><%= v %></button>
+      <% } } %>
+    </div>
+    <input type="submit" name="finalSubmit" value="Submit">
+  <% } %>
+</form>
