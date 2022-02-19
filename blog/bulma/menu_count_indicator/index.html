@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="../../../lib/4.0.0/github-markdown.min.css"/>
+    <style>
+      iframe {
+        padding: .25rem;
+        width: 100%;
+      }
+    </style>
+    <script src="../../../lib/3.0.8/marked.min.js"></script>
+    <script type="module">
+      window.controllers = {};
+
+      (async() => {
+        await import('../../../stimulusP/markdown.mjs')
+        await import('../../../stimulusP/v2/controllersLoaderWithTargetListEvents.mjs')
+      })()
+    </script>
+  </head>
+   <body id="theBody"  class="markdown-body" data-controller="markdown" data-url="./index.md">
+   </body>
+</html>
