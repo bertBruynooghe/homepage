@@ -11,20 +11,19 @@
         output.innerHTML = ejs.render(template, { formData })
         output.querySelector('#form').addEventListener('submit', e => {
           e.preventDefault()
-          controllerAction(render, new FormData(e.target))
+          controllerAction(render, new FormData(e.target), e.submitter.formAction)
         })
       }
 
-      const controllerAction = async (render, formData) => {
-        const textValue = formData.get('text')
-
-        if (formData.get('searchButton') != null) {
+      const controllerAction = async (render, formData, formAction) => {
+        if (formAction.endsWith('/suggestions')) {
+          const textValue = formData.get('text')
           formData.delete('suggestions[]')
           for (let i = 0 ; i < 5; i++) formData.append('suggestions[]', `${textValue}_${i}`)
         }
 
-        const suggestion = formData.get('suggestion')
-        if (suggestion) formData.set('text', suggestion)
+        if (formAction.endsWith('/suggestions/fill'))
+          formData.set('text', formData.get('suggestion'))
 
         render(formData)
       }

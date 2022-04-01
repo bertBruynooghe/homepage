@@ -3,10 +3,10 @@
     text = <%= formData.get('text')%> submittted
   <% } else { %>
     <input type="text" name="text" id="text" value="<%= formData.get('text') %>">
-    <button type="submit" name="searchButton">Search</button>
+    <button type="submit" formaction="./suggestions">Get suggestions</button>
     <div id="container">
       <% for (let [k, v] of formData.entries()) { if (k.startsWith('suggestions[')) { %>
-        <button type="submit" name="suggestion" value="<%= v %>"><%= v %></button>
+        <button type="submit" formaction="./suggestions/fill" name="suggestion" value="<%= v %>"><%= v %></button>
       <% } } %>
     </div>
     <input type="submit" name="finalSubmit" value="Submit">
