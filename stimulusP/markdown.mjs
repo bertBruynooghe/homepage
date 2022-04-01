@@ -13,4 +13,5 @@ controllers.markdown = async root => {
     }
   }
   root.innerHTML = marked(newText)
+  if (window.Prism) Prism.highlightAll()
 }
