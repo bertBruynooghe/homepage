@@ -1,7 +1,7 @@
 This is Bert Bruynooghe's homepage on GitHub.
 It currently contains:
 
-# [Resume](./cv/index.html)
+# *Resume* ([English](./cv/index.html) / [Nederlands](./cv/index.html))
 
 # [Portfolio](./portfolio/index.html)
 
