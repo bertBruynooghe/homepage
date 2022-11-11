@@ -3,6 +3,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js" integrity="sha512-RJJ1NNC88QhN7dwpCY8rm/6OxI+YdQP48DrLGe/eSAd+n+s1PXwQkkpzzAgoJe4cZFW2GALQoxox61gSY2yQfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body>
+        <label>Kies een 'tab separated values' bestand
+            <input type="file">
+        </label>
         <div style="width: 100%; height: 90vh;" class="svg-container">
           <svg style="width: 100%; height: 100%;"></svg>
         </div>
@@ -16,7 +19,19 @@
             const requiredDistance = 1500
             const yAxisWidth = 50
             const yAxisOffset = 4
-            const xAxisHeight = 10
+            const xAxisHeight = 10            
+            const fileInput = document.querySelector('input[type="file"]')
+
+            fileInput.addEventListener('change',async (...args) => {
+                const file = await fileInput.files[0].text()
+                d = d3.tsvParse(file)    
+                const maxY = d3.max(d, d => +d[distance])
+                const yScale = d3.scaleLinear().domain([0, maxY]).range([canvasHeight - xAxisHeight, 0])    
+                drawYAxis(yScale)
+                drawTargetDistance(yScale)
+                drawDistanceBars(d, yScale)
+                drawCarNames(d, yScale)
+            })
 
             const drawYAxis = yScale => {
                 const yAxis = d3.axisRight().scale(yScale).ticks(10, 'd')
@@ -41,7 +56,6 @@
             const drawCarNames = (d, yScale) => {
                 const numEntries = d.length
                 const offset = (canvasWidth - yAxisWidth - yAxisOffset) / ((columnWidthSpaceRatio + 1) * numEntries - 1)
-                console.log(offset * columnWidthSpaceRatio)
                 d3.select('svg').append('g').selectAll('g')
                   .data(d).enter().append('g').attr('transform', (_,i) => `translate(${i * ((columnWidthSpaceRatio  + 1) * offset)  + (columnWidthSpaceRatio - 1) * offset}, ${yScale(0)}) rotate(-90)`)
                   .append("text")
@@ -51,14 +65,7 @@
                   .text(d => d['AUTO'])
             }
 
-            d3.tsv('./2022-08_RAPPORT_RITTEN_PARTAGO.txt', d => {
-                const maxY = d3.max(d, d => +d[distance])
-                const yScale = d3.scaleLinear().domain([0, maxY]).range([canvasHeight - xAxisHeight, 0])    
-                drawYAxis(yScale)
-                drawTargetDistance(yScale)
-                drawDistanceBars(d, yScale)
-                drawCarNames(d, yScale)
-            })
+
                 
         </script>
     </body>
