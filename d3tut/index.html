@@ -1,6 +1,8 @@
 <html>
     <head>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js" integrity="sha512-RJJ1NNC88QhN7dwpCY8rm/6OxI+YdQP48DrLGe/eSAd+n+s1PXwQkkpzzAgoJe4cZFW2GALQoxox61gSY2yQfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- use version 0.19.0 -->
+        <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.19.0/package/dist/xlsx.full.min.js"></script>
     </head>
     <body>
         <label>Kies een 'tab separated values' bestand
@@ -23,15 +25,29 @@
             const fileInput = document.querySelector('input[type="file"]')
 
             fileInput.addEventListener('change',async (...args) => {
-                const file = await fileInput.files[0].text()
-                d = d3.tsvParse(file)    
+                const reader = new FileReader()
+                reader.onload = () => processSheetStream(reader)
+                const file = await fileInput.files[0]                
+                reader.readAsArrayBuffer(file)
+            })
+
+            const streamToD3Data = result => {
+                const dataArray = new Uint8Array(result)
+                const { SheetNames: [sheetName], Sheets} = XLSX.read(dataArray, { type: 'array' })
+                const sheet = Sheets[sheetName]
+                const [_, __, keys, ___, ...values] = XLSX.utils.sheet_to_json(sheet, { header: 1 })
+                return values.map(v => keys.reduce((m, k, i) => ({ ...m, [k]: v[i]}), {}))
+            }
+
+            const processSheetStream = ({ result }) => {
+                const d = streamToD3Data(result)
                 const maxY = d3.max(d, d => +d[distance])
                 const yScale = d3.scaleLinear().domain([0, maxY]).range([canvasHeight - xAxisHeight, 0])    
                 drawYAxis(yScale)
                 drawTargetDistance(yScale)
                 drawDistanceBars(d, yScale)
                 drawCarNames(d, yScale)
-            })
+            }
 
             const drawYAxis = yScale => {
                 const yAxis = d3.axisRight().scale(yScale).ticks(10, 'd')
