@@ -48,7 +48,7 @@
 
       const nominator = parseInt(`${invoiceNumber}0000`)
       const remainder = (nominator % 97) || 97
-      const theString = `${nominator}${remainder}`
+      const theString = `${nominator * 100 + remainder}`
       const paymentRef = `+++${theString.slice(0,3)}/${theString.slice(3,7)}/${theString.slice(7)}+++`
     </script>
   </head>
