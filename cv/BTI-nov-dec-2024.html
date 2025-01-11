@@ -103,10 +103,10 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-      const days = 17;
-      const invoiceDate = new Date("2024-12-17");
-      const invoiceNumber = 202401;
-      const title = "Overdracht inkomsten naar Houteborg CommV";
+      const hours = 17.5;
+      const invoiceDate = new Date("2025-01-15");
+      const invoiceNumber = 202501;
+      const title = "november-december 2024";
 
       const dueDate = new Date(
         invoiceDate.valueOf() + 15 * 24 * 60 * 60 * 1000
@@ -140,16 +140,16 @@
         <img src="../assets/houteborg_logo_inverted.png" width="100" />
       </div>
       <div style="margin: 0 3em">
-        <h1>Invoice</h1>
+        <h1>Factuur</h1>
+        Factuur
         <script>
           document.write(title);
         </script>
       </div>
       <div style="display: flex">
         <div style="margin: 0 1em">
-          <div><strong>Invoice number</strong></div>
+          <div><strong>Factuurnummer</strong></div>
           <div>
-            W
             <script>
               document.write(invoiceNumber);
             </script>
@@ -157,7 +157,7 @@
         </div>
         <div style="margin: 0 1em">
           <div>
-            <div><strong>Invoice date</strong></div>
+            <div><strong>Factuurdatum</strong></div>
             <div>
               <script>
                 document.writeln(
@@ -169,7 +169,7 @@
             </div>
           </div>
           <div>
-            <div><strong>Due date</strong></div>
+            <div><strong>Uiterste betaaldatum</strong></div>
             <div>
               <script>
                 document.writeln(dueDateString);
@@ -191,53 +191,64 @@
           <div
             style="background: silver; font-weight: bold; padding: 0.2em 0.5em"
           >
-            CLIENT
+            KLANT
           </div>
           <div style="background: whitesmoke; padding: 0.2em 0.5em">
-            <div><strong>Bert Bruynooghe</strong></div>
-            <div>Robert Rinskopflaan 24</div>
-            <div>9050 Gentbrugge</div>
-            <div>BE 0780 444 776</div>
+            <div><strong>Allinit BV</strong></div>
+            <div>Derbystraat 343</div>
+            <div>9051 Gent</div>
+            <div>BE 0811.733.810</div>
           </div>
         </div>
         <div>
           <div
             style="background: silver; font-weight: bold; padding: 0.2em 0.5em"
           >
-            SERVICE PROVIDER
+            DIENSTVERLENER
           </div>
-          <div style="background: whitesmoke; padding: 0.2em 0.5em">
-            <div><strong>Houteborg COMMV</strong></div>
-            <div>Robert Rinskopflaan 24</div>
-            <div>9050 Gentbrugge</div>
-            <div>BE 1017 171 890</div>
+          <div><strong>Houteborg COMMV</strong></div>
+          <div>Robert Rinskopflaan 24</div>
+          <div>9050 Gentbrugge</div>
+          <div>BE 1017.171.890</div>
           </div>
         </div>
       </div>
       <div>
         <div style="margin: 2em 0">
-          &nbsp;
+          <strong>Opdracht:</strong> Ontwikkeling Webplatform Reporting
         </div>
         <table style="width: 100%; border-collapse: collapse">
           <thead>
             <tr style="background: silver; font-weight: bold">
               <th style="text-align: left; width: 100%; padding: 0.5em 1em">
-                Description
+                Omschrijving
               </th>
-              <th style="text-align: right; padding: 0.5em 1em">VAT</th>
-              <th style="text-align: right; padding: 0.5em 1em">Total</th>
+              <th style="text-align: right; padding: 0.5em 1em">Hoeveelheid</th>
+              <th style="text-align: right; padding: 0.5em 1em">Prijs</th>
+              <th style="text-align: right; padding: 0.5em 1em">BTW</th>
+              <th style="text-align: right; padding: 0.5em 1em">Totaal</th>
             </tr>
           </thead>
           <tbody>
             <tr style="background: whitesmoke">
               <td style="text-align: left; width: 100%; padding: 0.5em 1em">
-                Overdracht inkomsten naar Houteborg CommV
+                Uren
+              </td>
+              <td style="text-align: right; padding: 0.5em 1em">
+                <script>
+                  document.write(d3.format("~r")(hours));
+                </script>
+              </td>
+              <td style="text-align: right; padding: 0.5em 1em">
+                <script>
+                  document.write("&euro;&#8239;" + tariff);
+                </script>
               </td>
               <td style="text-align: right; padding: 0.5em 1em">21%</td>
               <td style="text-align: right; padding: 0.5em 1em">
                 <script>
                   document.write(
-                    "&euro;&#8239;" + d3.format(",.2f")(17722.47)
+                    "&euro;&#8239;" + d3.format(",.2f")(tariff * hours)
                   );
                 </script>
               </td>
@@ -254,22 +265,22 @@
           "
         >
           <div style="display: flex">
-            <div style="padding: 0.5em 1em">Subtotal</div>
+            <div style="padding: 0.5em 1em">Subtotaal</div>
             <div style="padding: 0.5em 1em">
               <strong>
                 <script>
                   document.write(
-                    "&euro;&#8239;" + d3.format(",.2f")(17722.47)
+                    "&euro;&#8239;" + d3.format(",.2f")(tariff * hours)
                   );
                 </script></strong
               >
             </div>
-            <div style="padding: 0.5em 1em">VAT (21%)</div>
+            <div style="padding: 0.5em 1em">BTW (21%)</div>
             <div style="padding: 0.5em 1em">
               <strong>
                 <script>
                   document.write(
-                    "&euro;&#8239;" + d3.format(",.2f")(17722.47 * 0.21)
+                    "&euro;&#8239;" + d3.format(",.2f")(tariff * hours * 0.21)
                   );
                 </script></strong
               >
@@ -277,13 +288,13 @@
           </div>
           <div style="display: flex">
             <div style="padding: 0.5em 1em; background: black; color: white">
-              Total
+              Totaal
             </div>
             <div style="padding: 0.5em 1em; background: black; color: white">
               <strong>
                 <script>
                   document.write(
-                    "&euro;&#8239;" + d3.format(",.2f")(17722.47 * 1.21)
+                    "&euro;&#8239;" + d3.format(",.2f")(tariff * hours * 1.21)
                   );
                 </script>
               </strong>
@@ -294,16 +305,16 @@
     </div>
     <div style="background: whitesmoke">
       <div style="background: silver; font-weight: bold; padding: 0.5em 1em">
-        Payment details
+        Betalingsdetails
       </div>
       <table style="background: whitesmoke; margin-left: auto; margin-right: 0">
         <thead>
           <tr>
-            <th style="text-align: right; padding: 0.1em 1em">Amount</th>
+            <th style="text-align: right; padding: 0.1em 1em">Bedrag</th>
             <th style="text-align: left">
               <script>
                 document.write(
-                  "&euro;&#8239;" + d3.format(",.2f")(17722.47 * 1.21)
+                  "&euro;&#8239;" + d3.format(",.2f")(tariff * hours * 1.21)
                 );
               </script>
             </th>
@@ -311,7 +322,7 @@
         </thead>
         <tbody>
           <tr>
-            <th style="text-align: right; padding: 0.1em 1em">Due date</th>
+            <th style="text-align: right; padding: 0.1em 1em">Uiterste betaaldatum</th>
             <td>
               <script>
                 document.writeln(dueDateString);

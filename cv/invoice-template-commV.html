@@ -103,10 +103,10 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-      const days = 17;
-      const invoiceDate = new Date("2024-12-17");
-      const invoiceNumber = 202401;
-      const title = "Overdracht inkomsten naar Houteborg CommV";
+      const days = 12;
+      const invoiceDate = new Date("2024-12-03");
+      const invoiceNumber = 202411;
+      const title = "November 2024";
 
       const dueDate = new Date(
         invoiceDate.valueOf() + 15 * 24 * 60 * 60 * 1000
@@ -141,6 +141,7 @@
       </div>
       <div style="margin: 0 3em">
         <h1>Invoice</h1>
+        Invoice
         <script>
           document.write(title);
         </script>
@@ -194,10 +195,10 @@
             CLIENT
           </div>
           <div style="background: whitesmoke; padding: 0.2em 0.5em">
-            <div><strong>Bert Bruynooghe</strong></div>
-            <div>Robert Rinskopflaan 24</div>
-            <div>9050 Gentbrugge</div>
-            <div>BE 0780 444 776</div>
+            <div><strong>WindEurope</strong></div>
+            <div>Rue Belliard 40</div>
+            <div>1040 Brussels</div>
+            <div>BE0476 915 445</div>
           </div>
         </div>
         <div>
@@ -206,24 +207,26 @@
           >
             SERVICE PROVIDER
           </div>
-          <div style="background: whitesmoke; padding: 0.2em 0.5em">
-            <div><strong>Houteborg COMMV</strong></div>
-            <div>Robert Rinskopflaan 24</div>
-            <div>9050 Gentbrugge</div>
-            <div>BE 1017 171 890</div>
+          <div><strong>Houteborg COMMV</strong></div>
+          <div>Robert Rinskopflaan 24</div>
+          <div>9050 Gentbrugge</div>
+          <div>BE 1017 171 890</div>
           </div>
         </div>
       </div>
       <div>
         <div style="margin: 2em 0">
-          &nbsp;
+          <strong>Assignment:</strong> Development WindEurope Intelligence
+          Platform (PO 2400502)
         </div>
         <table style="width: 100%; border-collapse: collapse">
           <thead>
             <tr style="background: silver; font-weight: bold">
               <th style="text-align: left; width: 100%; padding: 0.5em 1em">
-                Description
+                Work
               </th>
+              <th style="text-align: right; padding: 0.5em 1em">Quantity</th>
+              <th style="text-align: right; padding: 0.5em 1em">Price</th>
               <th style="text-align: right; padding: 0.5em 1em">VAT</th>
               <th style="text-align: right; padding: 0.5em 1em">Total</th>
             </tr>
@@ -231,13 +234,23 @@
           <tbody>
             <tr style="background: whitesmoke">
               <td style="text-align: left; width: 100%; padding: 0.5em 1em">
-                Overdracht inkomsten naar Houteborg CommV
+                days
+              </td>
+              <td style="text-align: right; padding: 0.5em 1em">
+                <script>
+                  document.write(d3.format("~r")(days));
+                </script>
+              </td>
+              <td style="text-align: right; padding: 0.5em 1em">
+                <script>
+                  document.write("&euro;&#8239;" + tariff);
+                </script>
               </td>
               <td style="text-align: right; padding: 0.5em 1em">21%</td>
               <td style="text-align: right; padding: 0.5em 1em">
                 <script>
                   document.write(
-                    "&euro;&#8239;" + d3.format(",.2f")(17722.47)
+                    "&euro;&#8239;" + d3.format(",.2f")(tariff * days)
                   );
                 </script>
               </td>
@@ -259,7 +272,7 @@
               <strong>
                 <script>
                   document.write(
-                    "&euro;&#8239;" + d3.format(",.2f")(17722.47)
+                    "&euro;&#8239;" + d3.format(",.2f")(tariff * days)
                   );
                 </script></strong
               >
@@ -269,7 +282,7 @@
               <strong>
                 <script>
                   document.write(
-                    "&euro;&#8239;" + d3.format(",.2f")(17722.47 * 0.21)
+                    "&euro;&#8239;" + d3.format(",.2f")(tariff * days * 0.21)
                   );
                 </script></strong
               >
@@ -283,7 +296,7 @@
               <strong>
                 <script>
                   document.write(
-                    "&euro;&#8239;" + d3.format(",.2f")(17722.47 * 1.21)
+                    "&euro;&#8239;" + d3.format(",.2f")(tariff * days * 1.21)
                   );
                 </script>
               </strong>
@@ -303,7 +316,7 @@
             <th style="text-align: left">
               <script>
                 document.write(
-                  "&euro;&#8239;" + d3.format(",.2f")(17722.47 * 1.21)
+                  "&euro;&#8239;" + d3.format(",.2f")(tariff * days * 1.21)
                 );
               </script>
             </th>
