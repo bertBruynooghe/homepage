@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>calculate primary and secondary stability</title>
+    <script lang="text/javascript">
+      let area = 0
+      let nodes = []
+
+      const calculate = () => {
+        nodes = [[0, 0]]
+        for (const group of window.nodesContainer.children)
+          nodes.push([...(group.querySelectorAll('input'))].map(el => +el.value))
+        console.log(nodes)
+
+        let area = 0
+        for (let i = 1; i < nodes.length; i++){
+          area += (nodes[i][1] - nodes[i-1][1]) * (nodes[i][0] + nodes[i-1][0])  
+        }
+        console.log({ area })
+        draw()
+        return area
+      }
+
+      const draw = () => {
+        let path = 'M 0,0'
+        for (const node of nodes) path += ` L ${10 * node[0]}, ${10 * node[1]}`
+
+        window.path.setAttribute('d', path)
+      }
+
+      const addNode = () =>
+        window.nodesContainer.appendChild(window.nodeTemplate.content.cloneNode(true))
+      setTimeout(() => addNode(), 0)
+    </script>
+  </head>
+  <body>
+    This calculates righting/capsizing forces for different hull shapes with similar submerged volumes.
+    Submerged section area is considered to be one. 
+    <div role="none" id="nodesContainer">
+    </div>
+    <svg>
+      <path id="path" stroke="red" fill="none"></path>
+    </svg>
+    <template id="nodeTemplate">
+      <div role="group">
+        <label>x<input type="number" value="1"></label>
+        <label>y<input type="number" value="1"></label>
+      </div>
+    </template>
+    <button onClick="addNode()">add node</button>
+    <button onclick="calculate()">calculate</button>
+  </body>
+</html>
