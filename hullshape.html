@@ -7,8 +7,10 @@
 
       const calculate = () => {
         nodes = [[0, 0]]
-        for (const group of window.nodesContainer.children)
+        for (const group of window.nodesContainer.children) {
           nodes.push([...(group.querySelectorAll('input'))].map(el => +el.value))
+        }
+        nodes = nodes.sort(([a], [b]) => a < b ? -1 : 1)
         console.log(nodes)
 
         let area = 0
@@ -22,8 +24,7 @@
 
       const draw = () => {
         let path = 'M 0,0'
-        for (const node of nodes) path += ` L ${10 * node[0]}, ${10 * node[1]}`
-
+        for (const node of nodes) path += ` L ${node[0]},${node[1]}`
         window.path.setAttribute('d', path)
       }
 
@@ -37,8 +38,8 @@
     Submerged section area is considered to be one. 
     <div role="none" id="nodesContainer">
     </div>
-    <svg>
-      <path id="path" stroke="red" fill="none"></path>
+    <svg viewBox="-1 0 2 1" width="200" height="100">
+      <path id="path" stroke="red" fill="none" stroke-width="1" vector-effect="non-scaling-stroke"></path>
     </svg>
     <template id="nodeTemplate">
       <div role="group">
