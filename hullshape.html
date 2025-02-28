@@ -5,6 +5,50 @@
       let area = 0
       let nodes = []
 
+      const hullProfile = [[1.5, 1.5]]
+
+      const solveQuadratic = (a, b, c) => {
+        const determinant = b * b - 4 * a * c
+        const squared = Math.sqrt(determinant)
+        return [(-b + squared) / (2 * a), (-b - squared) / (2 * a)]
+      }
+
+      const calcParallelArea = (widths, height) => (widths[0] + widths[1]) * height / 2
+
+      const calcSubMergedTopPolygonNode = (bottomNode, topNode, area) => {
+        const width = bottomNode[0]
+        const slopeCoefficient = 0.5 * (topNode[1] - bottomNode[1])/(topNode[0] - bottomNode[0])
+        // area = (width + (width + eventualHeight / slopeCoefficient)) * eventualHeight) / 2)
+        // 2 * area = (2 * width + eventualHeight / slopeCoefficient) ( eventualHeight)
+        // (1 / slopeCoefficient) * eventualHeight ^ 2 + 2 * width * eventualHeight - 2 * area
+
+        const eventualHeights = solveQuadratic(1 / slopeCoefficient, 2 * width, -2 * area)
+        const eventualHeight = eventualHeights.find(h => h >= 0)
+        return [(bottomNode[0] + (eventualHeight / slopeCoefficient)) / 2, bottomNode[1] + eventualHeight]
+      }
+
+      const calcSubmergedProfile = hullProfile => {
+        // TODO: calculate on boundaries iso. profile, so we can use it for tilted too.
+        const fullProfile = [[0,0], ...hullProfile]
+        const submergedProfile = []
+        let totalArea = 0
+        for (let i = 0; totalArea < 1; i++) {
+          const height = fullProfile[i + 1][1] - fullProfile[i][1]
+          const widths = [0, 1].map(j =>  2 * fullProfile[i + j][0])
+          const parallelogramArea = calcParallelArea(widths, height)
+          totalArea += parallelogramArea
+          if (totalArea <= 1) submergedProfile.push(hullProfile[i + 1])
+          else {
+            const neededArea = 1 - (totalArea - parallelogramArea)
+            submergedProfile.push(calcSubMergedTopPolygonNode(fullProfile[i], fullProfile[i + 1], neededArea))
+            console.log({ submergedProfile })
+          }
+        }
+        return submergedProfile
+      }
+
+      calcSubmergedProfile(hullProfile)
+
       const calculate = () => {
         nodes = [[0, 0]]
         for (const group of window.nodesContainer.children) {
@@ -18,7 +62,6 @@
         for (let i = 1; i < nodes.length; i++){
           area += (nodes[i][1] - nodes[i-1][1]) * (nodes[i][0] + nodes[i-1][0])  
         }
-        console.log({ area })
         draw()
         return area
       }
@@ -26,11 +69,14 @@
       const draw = () => {
         let path = 'M 0,0'
         for (const node of nodes) path += ` L ${node[0]},${node[1]}`
+        path += ' Z'
         window.path.setAttribute('d', path)
       }
 
-      const addNode = () =>
+      const addNode = () => {
+        console.log(document.getElementById('nodesContainer'))
         window.nodesContainer.appendChild(window.nodeTemplate.content.cloneNode(true))
+      }
       setTimeout(() => addNode(), 0)
     </script>
   </head>
